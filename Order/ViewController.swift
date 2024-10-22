@@ -316,8 +316,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
         let totalProductsPrice = order.products.reduce(0) { $0 + $1.price }
         let productCount = order.products.count
-        totalPriceText.text = "Цена за \(productCount) \(viewModel.changePurchases(count: productCount))"
-        totalPriceLabel.text = "\(totalProductsPrice) ₽"
+        totalPriceText.text = "Цена за \(productCount) \(viewModel.changePurchases(count: productCount)) ₽"
+        totalPriceLabel.text = viewModel.formatCurrency(totalProductsPrice)
+
         let activePromocodes = order.promocodes.filter { $0.active }.prefix(2)
         let promocodeDiscount = activePromocodes.reduce(0) { $0 + Double($1.percent) * totalProductsPrice / 100 }
         let totalDiscount = (order.baseDiscount ?? 0) + (order.paymentDiscount ?? 0) + promocodeDiscount
@@ -327,17 +328,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         baseDiscountText.text = "Скидки"
-        baseDiscountLabel.text = "-\(order.baseDiscount ?? 0) ₽"
+        baseDiscountLabel.text = "-\(viewModel.formatCurrency(order.baseDiscount ?? 0)) ₽"
 
         discountText.text = "Промокоды"
-        discountLabel.text = "-\(promocodeDiscount) ₽"
+        discountLabel.text = "-\(viewModel.formatCurrency(promocodeDiscount)) ₽"
         
         paymentText.text = "Способ оплаты"
-        paymentLabel.text = "-\(order.paymentDiscount ?? 0)"
-        
+        paymentLabel.text = "-\(viewModel.formatCurrency(order.paymentDiscount ?? 0)) ₽"
+
         let finalPrice = totalProductsPrice - totalDiscount
         finalPriceText.text = "Итого"
-        finalPriceLabel.text = "\(finalPrice) ₽"
+        finalPriceLabel.text = "\(viewModel.formatCurrency(finalPrice)) ₽"
         
         for subview in promocodeStackView.arrangedSubviews {
             subview.removeFromSuperview()

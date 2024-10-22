@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 class ViewModel {
     func changePurchases(count: Int) -> String {
@@ -45,11 +45,20 @@ class ViewModel {
     
     func formatDate(date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ru_RU") 
+        dateFormatter.locale = Locale(identifier: "ru_RU")
         dateFormatter.dateFormat = "d MMMM"
         
         return dateFormatter.string(from: date)
     }
-
+    
+    func formatCurrency(_ amount: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 0
+        formatter.groupingSeparator = " "
+        formatter.groupingSize = 3
+        return formatter.string(from: NSNumber(value: amount)) ?? "\(amount)"
+    }
 }
 
