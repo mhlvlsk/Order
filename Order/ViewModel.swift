@@ -42,5 +42,14 @@ class ViewModel {
 
         return Order(screenTitle: "Оформление заказа", promocodes: [promocode1, promocode2, promocode3], products: [product1, product2, product3, product4, product5], paymentDiscount: 100, baseDiscount: 200)
     }
+    
+    func formatDate(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ru_RU") 
+        dateFormatter.dateFormat = "d MMMM"
+        
+        return dateFormatter.string(from: date)
+    }
+
 }
 

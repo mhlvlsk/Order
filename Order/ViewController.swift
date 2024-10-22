@@ -386,7 +386,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         container.addSubview(infoButton)
 
         let expirationLabel = UILabel()
-        expirationLabel.text = "Дата истечения: \(promocode.endDate != nil ? DateFormatter.localizedString(from: promocode.endDate!, dateStyle: .short, timeStyle: .none) : "Не указана")"
+        if let endDate = promocode.endDate {
+            expirationLabel.text = "По \(viewModel.formatDate(date: endDate))"
+        } else {
+            expirationLabel.text = "Дата истечения не указана"
+        }
         expirationLabel.font = UIFont.systemFont(ofSize: 14, weight: .light)
         expirationLabel.textColor = .gray
         expirationLabel.translatesAutoresizingMaskIntoConstraints = false
