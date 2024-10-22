@@ -90,13 +90,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         titleLabel.text = "Оформление заказа"
         titleLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         titleLabel.textAlignment = .center
+        titleLabel.numberOfLines = 0
+        titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(titleLabel)
         
         let promocodesTitleLabel = UILabel()
         promocodesTitleLabel.text = "Промокоды"
         promocodesTitleLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        promocodesTitleLabel.textAlignment = .center
+        promocodesTitleLabel.textAlignment = .left
+        promocodesTitleLabel.numberOfLines = 0
+        promocodesTitleLabel.lineBreakMode = .byWordWrapping
         promocodesTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(promocodesTitleLabel)
         
@@ -104,7 +108,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         hidePromocodesLabel.text = "Скрыть промокоды"
         hidePromocodesLabel.textColor = brickOrange
         hidePromocodesLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        hidePromocodesLabel.textAlignment = .center
+        hidePromocodesLabel.textAlignment = .left
         hidePromocodesLabel.isUserInteractionEnabled = true
         hidePromocodesLabel.translatesAutoresizingMaskIntoConstraints = false
         hidePromocodesLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hidePromocodesTapped)))
@@ -202,7 +206,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         contentView.addSubview(agreementText)
         
         applyPromocodeButton = UIButton(type: .system)
-        applyPromocodeButton.setTitle("Применить промокоды", for: .normal)
+        applyPromocodeButton.setTitle("Применить промокод", for: .normal)
         applyPromocodeButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         applyPromocodeButton.backgroundColor = ultraLightOrange
         applyPromocodeButton.setTitleColor(brickOrange, for: .normal)
@@ -236,8 +240,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo:contentView.safeAreaLayoutGuide.topAnchor),
             titleLabel.centerXAnchor.constraint(equalTo:contentView.centerXAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo:contentView.leadingAnchor, constant: 20),
+            titleLabel.trailingAnchor.constraint(equalTo:contentView.trailingAnchor, constant: -20),
             promocodesTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             promocodesTitleLabel.leadingAnchor.constraint(equalTo:contentView.leadingAnchor, constant: 20),
+            promocodesTitleLabel.trailingAnchor.constraint(equalTo:contentView.trailingAnchor, constant: -20),
             discountMessageLabel.topAnchor.constraint(equalTo: promocodesTitleLabel.bottomAnchor, constant: 10),
             discountMessageLabel.leadingAnchor.constraint(equalTo:contentView.leadingAnchor, constant: 20),
             discountMessageLabel.trailingAnchor.constraint(equalTo:contentView.trailingAnchor, constant: -20),
@@ -451,19 +458,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     }
                 }
             }
-            order?.promocodes[index].active = sender.isOn
+            
+            order?.promocodes[index].active = isActive
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                if let order = self.order {
+                    do {
+                        try self.showOrder(order: order)
+                    } catch let error {
+                        self.showError(error: error.localizedDescription)
+                    }
+                }
+            }
         }
     }
 
     @objc func applyPromocodes() {
         buttonsClicks.buttonAnimate(button: applyPromocodeButton)
-        if let order = order {
-            do {
-                try showOrder(order: order)
-            } catch let error {
-                showError(error: error.localizedDescription)
-            }
-        }
     }
 
     @objc func applyOrder() {
