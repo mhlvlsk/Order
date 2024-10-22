@@ -353,13 +353,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let container = UIView()
         container.layer.cornerRadius = 12
         container.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        container.layer.shadowColor = UIColor.black.cgColor
-        container.layer.shadowOpacity = 0.1
-        container.layer.shadowOffset = CGSize(width: 0, height: 2)
-        container.layer.shadowRadius = 4
         container.translatesAutoresizingMaskIntoConstraints = false
 
         container.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        
+        let leftCircle = UIView()
+        leftCircle.backgroundColor = .white
+        leftCircle.layer.cornerRadius = 8
+        leftCircle.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(leftCircle)
+
+        let rightCircle = UIView()
+        rightCircle.backgroundColor = .white
+        rightCircle.layer.cornerRadius = 8
+        rightCircle.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(rightCircle)
 
         let titleLabel = UILabel()
         titleLabel.text = promocode.title
@@ -411,7 +419,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         container.addSubview(switchControl)
 
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
+            leftCircle.widthAnchor.constraint(equalToConstant: 16),
+            leftCircle.heightAnchor.constraint(equalTo: leftCircle.widthAnchor),
+            leftCircle.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: -8),
+            leftCircle.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+
+            rightCircle.widthAnchor.constraint(equalToConstant: 16),
+            rightCircle.heightAnchor.constraint(equalTo: rightCircle.widthAnchor),
+            rightCircle.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: 8),
+            rightCircle.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+            
+            titleLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 17),
             titleLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: 10),
             
             discountBackgroundView.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 5),
@@ -427,13 +445,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             infoButton.widthAnchor.constraint(equalToConstant: 24),
             infoButton.heightAnchor.constraint(equalToConstant: 24),
             
-            expirationLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
+            expirationLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 17),
             expirationLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
             
-            infoLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
+            infoLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 17),
             infoLabel.topAnchor.constraint(equalTo: expirationLabel.bottomAnchor, constant: 5),
             
-            switchControl.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
+            switchControl.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -17),
             switchControl.centerYAnchor.constraint(equalTo: container.centerYAnchor)
         ])
 
