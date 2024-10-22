@@ -44,12 +44,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let customGreen = UIColor(red: 0.235, green: 0.765, blue: 0.482, alpha: 1.0)
     let ultraLightOrange = UIColor(red: 1.0, green: 0.894, blue: 0.854, alpha: 1.0)
     
+    let viewModel = ViewModel()
+    let buttonsClicks = ButtonsClicks()
+    
     var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Инициализация и настройка tableView
         tableView = UITableView(frame: self.view.bounds, style: .plain)
         tableView.dataSource = self
         tableView.delegate = self
@@ -58,8 +60,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.estimatedRowHeight = 100
         self.view.addSubview(tableView)
         
-        // Создание примера заказа
-        order = createExampleOrder()
+        order = viewModel.createExampleOrder()
 
         DispatchQueue.main.async { [weak self] in
             if let order = self?.order {
@@ -71,7 +72,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         }
     }
-
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -210,7 +210,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         applyPromocodeButton.clipsToBounds = true
         applyPromocodeButton.translatesAutoresizingMaskIntoConstraints = false
         applyPromocodeButton.addTarget(self, action: #selector(applyPromocodes), for: .touchUpInside)
-        //contentView.bringSubviewToFront(applyPromocodeButton)
         contentView.addSubview(applyPromocodeButton)
         
         applyButton = UIButton(type: .system)
@@ -222,7 +221,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         applyButton.clipsToBounds = true
         applyButton.translatesAutoresizingMaskIntoConstraints = false
         applyButton.addTarget(self, action: #selector(applyOrder), for: .touchUpInside)
-        //contentView.bringSubviewToFront(applyButton)
         contentView.addSubview(applyButton)
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -282,12 +280,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             errorMessageLabel.centerXAnchor.constraint(equalTo:contentView.centerXAnchor),
             errorMessageLabel.leadingAnchor.constraint(equalTo:contentView.leadingAnchor, constant: 20),
             errorMessageLabel.trailingAnchor.constraint(equalTo:contentView.trailingAnchor, constant: -20),
-            
             applyButton.topAnchor.constraint(equalTo: finalPriceLabel.bottomAnchor, constant: 10),
             applyButton.centerXAnchor.constraint(equalTo:contentView.centerXAnchor),
             applyButton.widthAnchor.constraint(equalToConstant: 300),
             applyButton.heightAnchor.constraint(equalToConstant: 55),
-            
             agreementText.topAnchor.constraint(equalTo: applyButton.bottomAnchor, constant: 10),
             agreementText.leadingAnchor.constraint(equalTo:contentView.leadingAnchor, constant: 20),
             agreementText.trailingAnchor.constraint(equalTo:contentView.trailingAnchor, constant: -20),
@@ -310,28 +306,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 throw NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "У продукта стоимость должна быть больше 0."])
             }
         }
-
-        func changePurchases(count: Int) -> String {
-            let remainder10 = count % 10
-            let remainder100 = count % 100
-            
-            if remainder100 >= 11 && remainder100 <= 19 {
-                return "товаров"
-            }
-            
-            switch remainder10 {
-            case 1:
-                return "товар"
-            case 2, 3, 4:
-                return "товара"
-            default:
-                return "товаров"
-            }
-        }
             
         let totalProductsPrice = order.products.reduce(0) { $0 + $1.price }
         let productCount = order.products.count
-        totalPriceText.text = "Цена за \(productCount) \(changePurchases(count: productCount))"
+        totalPriceText.text = "Цена за \(productCount) \(viewModel.changePurchases(count: productCount))"
         totalPriceLabel.text = "\(totalProductsPrice) ₽"
         let activePromocodes = order.promocodes.filter { $0.active }.prefix(2)
         let promocodeDiscount = activePromocodes.reduce(0) { $0 + Double($1.percent) * totalProductsPrice / 100 }
@@ -363,7 +341,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             promocodeStackView.addArrangedSubview(promocodeView)
         }
     }
-    
     
     func createStyledPromocodeView(promocode: Order.Promocode) -> UIView {
         let container = UIView()
@@ -453,24 +430,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @objc func infoButtonTapped() {
-        let alert = UIAlertController(title: "Внимание", message: "Одновременно можно использовать не более двух промокодов.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-        let window = windowScene.windows.first(where: { $0.isKeyWindow }),
-        let topController = window.rootViewController {
-            topController.present(alert, animated: true, completion: nil)
-        }
+        buttonsClicks.infoTap()
     }
     
     @objc func hidePromocodesTapped() {
-        UIView.animate(withDuration: 0.1, animations: {
-            self.hidePromocodesLabel.alpha = 0.5
-            }) { _ in
-            UIView.animate(withDuration: 0.1, animations: {
-                self.hidePromocodesLabel.alpha = 1.0
-            })
-        }
+        buttonsClicks.textTapAnimate(text: hidePromocodesLabel)
     }
 
     @objc func promocodeSwitchChanged(_ sender: UISwitch) {
@@ -492,21 +456,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     @objc func applyPromocodes() {
-        UIView.animate(withDuration: 0.1, animations: {
-            self.applyPromocodeButton.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-            self.applyPromocodeButton.alpha = 0.7
-        }) { _ in
-            UIView.animate(withDuration: 0.4,
-                           delay: 0,
-                           usingSpringWithDamping: 0.4,
-                           initialSpringVelocity: 6.0,
-                           options: .allowUserInteraction,
-                           animations: {
-                self.applyPromocodeButton.transform = CGAffineTransform.identity
-                self.applyPromocodeButton.alpha = 1.0
-            }, completion: nil)
-        }
-
+        buttonsClicks.buttonAnimate(button: applyPromocodeButton)
         if let order = order {
             do {
                 try showOrder(order: order)
@@ -516,53 +466,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
 
-
     @objc func applyOrder() {
-        UIView.animate(withDuration: 0.1, animations: {
-            self.applyButton.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-            self.applyButton.alpha = 0.7
-        }) { _ in
-            UIView.animate(withDuration: 0.4,
-                           delay: 0,
-                           usingSpringWithDamping: 0.4,
-                           initialSpringVelocity: 6.0,
-                           options: .allowUserInteraction,
-                           animations: {
-                self.applyButton.transform = CGAffineTransform.identity
-                self.applyButton.alpha = 1.0
-            }, completion: nil)
-        }
+        buttonsClicks.buttonAnimate(button:applyButton)
     }
-
     
     func showError(error: String) {
         errorMessageLabel.text = error
         totalPriceLabel.text = ""
         discountLabel.text = ""
         finalPriceLabel.text = ""
-    }
-
-    func createExampleOrder() -> Order {
-        let product1 = Order.Product(price: 1500, title: "Товар 1")
-        let product2 = Order.Product(price: 2500, title: "Товар 2")
-        let product3 = Order.Product(price: 100, title: "Товар 3")
-        let product4 = Order.Product(price: 300, title: "Товар 4")
-        let product5 = Order.Product(price: 500, title: "Товар 5")
-
-        var components = DateComponents()
-            components.year = 2024
-            components.month = 12
-            components.day = 31
-
-            let calendar = Calendar.current
-            guard let endDate = calendar.date(from: components) else {
-                fatalError("Не удалось создать дату")
-            }
-        
-        let promocode1 = Order.Promocode(title: "HELLO", percent: 10, endDate: endDate, info: "На все товары", active: true)
-        let promocode2 = Order.Promocode(title: "DRANDULET", percent: 15, endDate: endDate, info: "На автотовары", active: false)
-        let promocode3 = Order.Promocode(title: "ARBUZ", percent: 35, endDate: endDate, info: "На арбузы", active: false)
-
-        return Order(screenTitle: "Оформление заказа", promocodes: [promocode1, promocode2, promocode3], products: [product1, product2, product3, product4, product5], paymentDiscount: 100, baseDiscount: 200)
     }
 }
