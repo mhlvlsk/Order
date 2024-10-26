@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		126740CA2CCCC0A700473106 /* OrderStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126740C92CCCC0A700473106 /* OrderStruct.swift */; };
+		126740CC2CCCC28200473106 /* CellsConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126740CB2CCCC28200473106 /* CellsConfig.swift */; };
+		12AAD96A2CCCDA0B002A81FB /* AddPromocodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AAD9692CCCDA0B002A81FB /* AddPromocodeViewController.swift */; };
 		12C467C22CBE3E7300F64B5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C467C12CBE3E7300F64B5C /* AppDelegate.swift */; };
 		12C467C42CBE3E7300F64B5C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C467C32CBE3E7300F64B5C /* SceneDelegate.swift */; };
 		12C467C62CBE3E7300F64B5C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C467C52CBE3E7300F64B5C /* ViewController.swift */; };
@@ -18,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		126740C92CCCC0A700473106 /* OrderStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStruct.swift; sourceTree = "<group>"; };
+		126740CB2CCCC28200473106 /* CellsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellsConfig.swift; sourceTree = "<group>"; };
+		12AAD9692CCCDA0B002A81FB /* AddPromocodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPromocodeViewController.swift; sourceTree = "<group>"; };
 		12C467BE2CBE3E7300F64B5C /* Order.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Order.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12C467C12CBE3E7300F64B5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12C467C32CBE3E7300F64B5C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,10 +67,13 @@
 			isa = PBXGroup;
 			children = (
 				12C467C12CBE3E7300F64B5C /* AppDelegate.swift */,
+				12AAD9692CCCDA0B002A81FB /* AddPromocodeViewController.swift */,
 				12C467C32CBE3E7300F64B5C /* SceneDelegate.swift */,
 				12C4CB612CC7C55300469B27 /* ButtonsClicks.swift */,
+				126740CB2CCCC28200473106 /* CellsConfig.swift */,
 				12C467C52CBE3E7300F64B5C /* ViewController.swift */,
 				12C4CB5D2CC7ABF600469B27 /* ViewModel.swift */,
+				126740C92CCCC0A700473106 /* OrderStruct.swift */,
 				12C467C72CBE3E7300F64B5C /* Main.storyboard */,
 				12C467CA2CBE3E7500F64B5C /* Assets.xcassets */,
 				12C467CC2CBE3E7500F64B5C /* LaunchScreen.storyboard */,
@@ -145,10 +154,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				12C467C62CBE3E7300F64B5C /* ViewController.swift in Sources */,
+				126740CA2CCCC0A700473106 /* OrderStruct.swift in Sources */,
 				12C467C22CBE3E7300F64B5C /* AppDelegate.swift in Sources */,
 				12C4CB5E2CC7ABF600469B27 /* ViewModel.swift in Sources */,
 				12C4CB622CC7C55300469B27 /* ButtonsClicks.swift in Sources */,
 				12C467C42CBE3E7300F64B5C /* SceneDelegate.swift in Sources */,
+				12AAD96A2CCCDA0B002A81FB /* AddPromocodeViewController.swift in Sources */,
+				126740CC2CCCC28200473106 /* CellsConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

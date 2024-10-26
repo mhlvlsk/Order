@@ -39,8 +39,10 @@ class ViewModel {
         let promocode1 = Order.Promocode(title: "HELLO", percent: 10, endDate: endDate, info: "На все товары", active: false)
         let promocode2 = Order.Promocode(title: "DRANDULET", percent: 15, endDate: endDate, info: "На автотовары", active: false)
         let promocode3 = Order.Promocode(title: "ARBUZ", percent: 35, endDate: endDate, info: "На арбузы", active: false)
+        let promocode4 = Order.Promocode(title: "PROMO", percent: 20, endDate: endDate, info: "Тестовый", active: true)
+        let promocode5 = Order.Promocode(title: "FRIDAY", percent: 11, endDate: endDate, info: "Тестовый", active: true)
 
-        return Order(screenTitle: "Оформление заказа", promocodes: [promocode1, promocode2, promocode3], products: [product1, product2, product3, product4, product5], paymentDiscount: 100, baseDiscount: 200)
+        return Order(screenTitle: "Оформление заказа", promocodes: [promocode1, promocode2, promocode3], promocodesPool: [promocode4, promocode5], products: [product1, product2, product3, product4, product5], paymentDiscount: 100, baseDiscount: 200)
     }
     
     func formatDate(date: Date) -> String {
