@@ -36,7 +36,7 @@ class ViewModel {
                 fatalError("Не удалось создать дату")
             }
         
-        let promocode1 = Order.Promocode(title: "HELLO", percent: 10, endDate: endDate, info: "На все товары", active: true)
+        let promocode1 = Order.Promocode(title: "HELLO", percent: 10, endDate: endDate, info: "На все товары", active: false)
         let promocode2 = Order.Promocode(title: "DRANDULET", percent: 15, endDate: endDate, info: "На автотовары", active: false)
         let promocode3 = Order.Promocode(title: "ARBUZ", percent: 35, endDate: endDate, info: "На арбузы", active: false)
 
