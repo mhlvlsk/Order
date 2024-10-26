@@ -16,7 +16,7 @@ struct Order {
     
     var screenTitle: String
     var promocodes: [Promocode]
-    var promocodesPool: [Promocode]
+    var availableForActive: [Promocode]
     let products: [Product]
     let paymentDiscount: Double?
     let baseDiscount: Double?

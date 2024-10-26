@@ -19,7 +19,7 @@ class AddPromocodeViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        promoPool = order?.promocodesPool ?? []
+        promoPool = order?.availableForActive ?? []
         
         setupUI()
     }
