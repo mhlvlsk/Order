@@ -144,19 +144,41 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             throw NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Сумма текущей скидки не может быть больше суммы заказа."])
         }
         
-        baseDiscountText.text = "Скидки"
-        baseDiscountLabel.text = "-\(viewModel.formatCurrency(order.baseDiscount ?? 0)) ₽"
+        if let baseDiscount = order.baseDiscount, baseDiscount > 0 {
+            baseDiscountText.text = "Скидки"
+            baseDiscountLabel.text = "-\(viewModel.formatCurrency(baseDiscount)) ₽"
+            baseDiscountText.isHidden = false
+            baseDiscountLabel.isHidden = false
+        } else {
+            baseDiscountText.isHidden = true
+            baseDiscountLabel.isHidden = true
+        }
         
-        discountText.text = "Промокоды"
-        discountLabel.text = "-\(viewModel.formatCurrency(promocodeDiscount)) ₽"
+        if promocodeDiscount > 0 {
+            discountText.text = "Промокоды"
+            discountLabel.text = "-\(viewModel.formatCurrency(promocodeDiscount)) ₽"
+            discountText.isHidden = false
+            discountLabel.isHidden = false
+        } else {
+            discountText.isHidden = true
+            discountLabel.isHidden = true
+        }
         
-        paymentText.text = "Способ оплаты"
-        paymentLabel.text = "-\(viewModel.formatCurrency(order.paymentDiscount ?? 0)) ₽"
+        if let paymentDiscount = order.paymentDiscount, paymentDiscount > 0 {
+            paymentText.text = "Способ оплаты"
+            paymentLabel.text = "-\(viewModel.formatCurrency(paymentDiscount)) ₽"
+            paymentText.isHidden = false
+            paymentLabel.isHidden = false
+        } else {
+            paymentText.isHidden = true
+            paymentLabel.isHidden = true
+        }
         
         let finalPrice = totalProductsPrice - totalDiscount
         finalPriceText.text = "Итого"
         finalPriceLabel.text = "\(viewModel.formatCurrency(finalPrice)) ₽"
     }
+
     
     func createStyledPromocodeView(promocode: Order.Promocode) -> UIView {
         let container = UIView()
@@ -371,7 +393,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         case 1:
             let promocodesTitleLabel = UILabel()
             promocodesTitleLabel.text = "Промокоды"
-            promocodesTitleLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+            promocodesTitleLabel.font = UIFont.systemFont(ofSize: 24, weight: .medium)
             promocodesTitleLabel.textAlignment = .left
             promocodesTitleLabel.numberOfLines = 0
             promocodesTitleLabel.lineBreakMode = .byWordWrapping
@@ -389,16 +411,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             contentView.addSubview(discountMessageLabel)
             
             applyPromocodeButton = UIButton(type: .system)
-            applyPromocodeButton.setTitle("Применить промокод", for: .normal)
-            applyPromocodeButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-            applyPromocodeButton.backgroundColor = ultraLightOrange
-            applyPromocodeButton.setTitleColor(brickOrange, for: .normal)
-            applyPromocodeButton.layer.cornerRadius = 10
-            applyPromocodeButton.clipsToBounds = true
+            var config = UIButton.Configuration.plain()
+            config.title = "Применить промокод"
+            config.image = UIImage(named: "promoLogo")
+            config.imagePlacement = .leading
+            config.imagePadding = 8
+            config.baseForegroundColor = brickOrange
+            config.background.backgroundColor = ultraLightOrange
+            config.background.cornerRadius = 10
+            config.attributedTitle?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+            applyPromocodeButton.configuration = config
             applyPromocodeButton.translatesAutoresizingMaskIntoConstraints = false
             applyPromocodeButton.addTarget(self, action: #selector(applyPromocodes), for: .touchUpInside)
             contentView.addSubview(applyPromocodeButton)
-            
+
+
             NSLayoutConstraint.activate([
                 promocodesTitleLabel.topAnchor.constraint(equalTo:contentView.topAnchor, constant: 10),
                 promocodesTitleLabel.leadingAnchor.constraint(equalTo:contentView.leadingAnchor, constant: 20),
@@ -567,7 +594,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 separator.heightAnchor.constraint(equalToConstant: 1),
                 separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
                 separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-                separator.bottomAnchor.constraint(equalTo: contentView.topAnchor, constant: 124),
+                separator.topAnchor.constraint(equalTo: paymentLabel.bottomAnchor, constant: 10),
                 finalPriceLabel.topAnchor.constraint(equalTo: paymentLabel.bottomAnchor, constant: 20),
                 finalPriceLabel.leadingAnchor.constraint(equalTo:contentView.leadingAnchor, constant: 20),
                 finalPriceLabel.trailingAnchor.constraint(equalTo:contentView.trailingAnchor, constant: -20),
