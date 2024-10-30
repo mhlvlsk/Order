@@ -8,8 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		126740CA2CCCC0A700473106 /* OrderStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126740C92CCCC0A700473106 /* OrderStruct.swift */; };
-		126740CC2CCCC28200473106 /* CellsConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126740CB2CCCC28200473106 /* CellsConfig.swift */; };
+		127790DC2CD1EF64001E1CC6 /* ProductReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127790DB2CD1EF64001E1CC6 /* ProductReviewCell.swift */; };
+		127790DE2CD1F392001E1CC6 /* RatingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127790DD2CD1F391001E1CC6 /* RatingCell.swift */; };
+		127790E02CD2151A001E1CC6 /* InputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127790DF2CD2151A001E1CC6 /* InputCell.swift */; };
+		127790E22CD226F8001E1CC6 /* SendReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127790E12CD226F8001E1CC6 /* SendReviewCell.swift */; };
 		12AAD96A2CCCDA0B002A81FB /* AddPromocodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AAD9692CCCDA0B002A81FB /* AddPromocodeViewController.swift */; };
+		12AAD96C2CD0B2AD002A81FB /* ProductSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AAD96B2CD0B2AD002A81FB /* ProductSelectionViewController.swift */; };
+		12AAD96E2CD0B2F1002A81FB /* ProductReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AAD96D2CD0B2F1002A81FB /* ProductReviewViewController.swift */; };
+		12AAD9702CD0C8AA002A81FB /* ProductSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AAD96F2CD0C8AA002A81FB /* ProductSelectionViewModel.swift */; };
+		12AAD9722CD0C8D7002A81FB /* ProductStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AAD9712CD0C8D7002A81FB /* ProductStruct.swift */; };
+		12AAD9742CD0D863002A81FB /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AAD9732CD0D863002A81FB /* ProductCell.swift */; };
 		12C467C22CBE3E7300F64B5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C467C12CBE3E7300F64B5C /* AppDelegate.swift */; };
 		12C467C42CBE3E7300F64B5C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C467C32CBE3E7300F64B5C /* SceneDelegate.swift */; };
 		12C467C62CBE3E7300F64B5C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C467C52CBE3E7300F64B5C /* ViewController.swift */; };
@@ -22,8 +30,16 @@
 
 /* Begin PBXFileReference section */
 		126740C92CCCC0A700473106 /* OrderStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStruct.swift; sourceTree = "<group>"; };
-		126740CB2CCCC28200473106 /* CellsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellsConfig.swift; sourceTree = "<group>"; };
+		127790DB2CD1EF64001E1CC6 /* ProductReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductReviewCell.swift; sourceTree = "<group>"; };
+		127790DD2CD1F391001E1CC6 /* RatingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingCell.swift; sourceTree = "<group>"; };
+		127790DF2CD2151A001E1CC6 /* InputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCell.swift; sourceTree = "<group>"; };
+		127790E12CD226F8001E1CC6 /* SendReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendReviewCell.swift; sourceTree = "<group>"; };
 		12AAD9692CCCDA0B002A81FB /* AddPromocodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPromocodeViewController.swift; sourceTree = "<group>"; };
+		12AAD96B2CD0B2AD002A81FB /* ProductSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSelectionViewController.swift; sourceTree = "<group>"; };
+		12AAD96D2CD0B2F1002A81FB /* ProductReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductReviewViewController.swift; sourceTree = "<group>"; };
+		12AAD96F2CD0C8AA002A81FB /* ProductSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSelectionViewModel.swift; sourceTree = "<group>"; };
+		12AAD9712CD0C8D7002A81FB /* ProductStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductStruct.swift; sourceTree = "<group>"; };
+		12AAD9732CD0D863002A81FB /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		12C467BE2CBE3E7300F64B5C /* Order.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Order.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12C467C12CBE3E7300F64B5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12C467C32CBE3E7300F64B5C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +63,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		127790E32CD23F3F001E1CC6 /* Promocodes */ = {
+			isa = PBXGroup;
+			children = (
+				12AAD9692CCCDA0B002A81FB /* AddPromocodeViewController.swift */,
+				12C4CB612CC7C55300469B27 /* ButtonsClicks.swift */,
+				126740C92CCCC0A700473106 /* OrderStruct.swift */,
+				12C4CB5D2CC7ABF600469B27 /* ViewModel.swift */,
+				12C467C52CBE3E7300F64B5C /* ViewController.swift */,
+			);
+			path = Promocodes;
+			sourceTree = "<group>";
+		};
+		127790E42CD23F9F001E1CC6 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				12AAD96B2CD0B2AD002A81FB /* ProductSelectionViewController.swift */,
+				12AAD96F2CD0C8AA002A81FB /* ProductSelectionViewModel.swift */,
+				12AAD9732CD0D863002A81FB /* ProductCell.swift */,
+				127790DB2CD1EF64001E1CC6 /* ProductReviewCell.swift */,
+				12AAD9712CD0C8D7002A81FB /* ProductStruct.swift */,
+				127790DD2CD1F391001E1CC6 /* RatingCell.swift */,
+				127790E12CD226F8001E1CC6 /* SendReviewCell.swift */,
+				127790DF2CD2151A001E1CC6 /* InputCell.swift */,
+				12AAD96D2CD0B2F1002A81FB /* ProductReviewViewController.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
 		12C467B52CBE3E7200F64B5C = {
 			isa = PBXGroup;
 			children = (
@@ -67,13 +111,9 @@
 			isa = PBXGroup;
 			children = (
 				12C467C12CBE3E7300F64B5C /* AppDelegate.swift */,
-				12AAD9692CCCDA0B002A81FB /* AddPromocodeViewController.swift */,
 				12C467C32CBE3E7300F64B5C /* SceneDelegate.swift */,
-				12C4CB612CC7C55300469B27 /* ButtonsClicks.swift */,
-				126740CB2CCCC28200473106 /* CellsConfig.swift */,
-				12C467C52CBE3E7300F64B5C /* ViewController.swift */,
-				12C4CB5D2CC7ABF600469B27 /* ViewModel.swift */,
-				126740C92CCCC0A700473106 /* OrderStruct.swift */,
+				127790E32CD23F3F001E1CC6 /* Promocodes */,
+				127790E42CD23F9F001E1CC6 /* Review */,
 				12C467C72CBE3E7300F64B5C /* Main.storyboard */,
 				12C467CA2CBE3E7500F64B5C /* Assets.xcassets */,
 				12C467CC2CBE3E7500F64B5C /* LaunchScreen.storyboard */,
@@ -155,12 +195,20 @@
 			files = (
 				12C467C62CBE3E7300F64B5C /* ViewController.swift in Sources */,
 				126740CA2CCCC0A700473106 /* OrderStruct.swift in Sources */,
+				12AAD96E2CD0B2F1002A81FB /* ProductReviewViewController.swift in Sources */,
+				127790DC2CD1EF64001E1CC6 /* ProductReviewCell.swift in Sources */,
 				12C467C22CBE3E7300F64B5C /* AppDelegate.swift in Sources */,
+				12AAD9742CD0D863002A81FB /* ProductCell.swift in Sources */,
+				12AAD9722CD0C8D7002A81FB /* ProductStruct.swift in Sources */,
 				12C4CB5E2CC7ABF600469B27 /* ViewModel.swift in Sources */,
+				12AAD96C2CD0B2AD002A81FB /* ProductSelectionViewController.swift in Sources */,
+				127790DE2CD1F392001E1CC6 /* RatingCell.swift in Sources */,
+				127790E02CD2151A001E1CC6 /* InputCell.swift in Sources */,
 				12C4CB622CC7C55300469B27 /* ButtonsClicks.swift in Sources */,
 				12C467C42CBE3E7300F64B5C /* SceneDelegate.swift in Sources */,
+				127790E22CD226F8001E1CC6 /* SendReviewCell.swift in Sources */,
 				12AAD96A2CCCDA0B002A81FB /* AddPromocodeViewController.swift in Sources */,
-				126740CC2CCCC28200473106 /* CellsConfig.swift in Sources */,
+				12AAD9702CD0C8AA002A81FB /* ProductSelectionViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
