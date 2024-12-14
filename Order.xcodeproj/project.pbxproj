@@ -81,6 +81,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1207FBB42D0D550C00FD50D4 /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				123441782D08310500998813 /* OrderCancel.swift */,
+				124E5CA12D095ECE00AE0AE5 /* Purchase.swift */,
+				12DB98612D0AA83B000910BC /* PromocodeView.swift */,
+				124E5CA32D0989A700AE0AE5 /* OrderContent.swift */,
+				129B01C82D0C5D3500C5446D /* OrderCalculations.swift */,
+				1207FBB02D0D38F600FD50D4 /* PaymentFailed.swift */,
+				1207FBB22D0D391200FD50D4 /* SomethingWentWrong.swift */,
+				1239B91E2D0C77CA008EAA82 /* TyForOrder.swift */,
+				1207FBAE2D0D38BC00FD50D4 /* TyForUnpaidOrder.swift */,
+			);
+			path = Purchase;
+			sourceTree = "<group>";
+		};
 		127790E32CD23F3F001E1CC6 /* Promocodes */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,15 +150,7 @@
 				127790E32CD23F3F001E1CC6 /* Promocodes */,
 				127790E42CD23F9F001E1CC6 /* Review */,
 				122906C52D0817F40034A8FA /* StartScreen.swift */,
-				123441782D08310500998813 /* OrderCancel.swift */,
-				124E5CA12D095ECE00AE0AE5 /* Purchase.swift */,
-				12DB98612D0AA83B000910BC /* PromocodeView.swift */,
-				124E5CA32D0989A700AE0AE5 /* OrderContent.swift */,
-				129B01C82D0C5D3500C5446D /* OrderCalculations.swift */,
-				1207FBB02D0D38F600FD50D4 /* PaymentFailed.swift */,
-				1207FBB22D0D391200FD50D4 /* SomethingWentWrong.swift */,
-				1239B91E2D0C77CA008EAA82 /* TyForOrder.swift */,
-				1207FBAE2D0D38BC00FD50D4 /* TyForUnpaidOrder.swift */,
+				1207FBB42D0D550C00FD50D4 /* Purchase */,
 				12C467CA2CBE3E7500F64B5C /* Assets.xcassets */,
 				12C467CF2CBE3E7500F64B5C /* Info.plist */,
 			);
