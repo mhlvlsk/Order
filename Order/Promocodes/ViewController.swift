@@ -138,7 +138,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let activePromocodes = order.promocodes.filter { $0.active }.prefix(2)
         let promocodeDiscount = activePromocodes.reduce(0) { $0 + Double($1.percent) * totalProductsPrice / 100 }
-        let totalDiscount = (order.baseDiscount ?? 0) + (order.paymentDiscount ?? 0) + promocodeDiscount
+        let totalDiscount = (order.baseDiscount ?? 0) + (order.pDiscount ?? 0) + promocodeDiscount
         
         guard totalDiscount <= totalProductsPrice else {
             throw NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Сумма текущей скидки не может быть больше суммы заказа."])
@@ -164,7 +164,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             discountLabel.isHidden = true
         }
         
-        if let paymentDiscount = order.paymentDiscount, paymentDiscount > 0 {
+        if let paymentDiscount = order.pDiscount, paymentDiscount > 0 {
             paymentText.text = "Способ оплаты"
             paymentLabel.text = "-\(viewModel.formatCurrency(paymentDiscount)) ₽"
             paymentText.isHidden = false

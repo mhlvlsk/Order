@@ -25,8 +25,8 @@ struct MainView: View {
             VStack(spacing: 20) {
                 NavigationLink("Review Screen", destination: Screen1())
                 NavigationLink("Promocodes Screen", destination: Screen2())
-                NavigationLink("Order cancel", destination: Screen3())
-                NavigationLink("Экран 4", destination: Screen4())
+                NavigationLink("Order cancel Screen", destination: Screen3())
+                NavigationLink("Purchase Screen", destination: Screen4())
             }
             .navigationTitle("")
             .padding()
@@ -37,14 +37,12 @@ struct MainView: View {
 struct Screen1: View {
     var body: some View {
         ProductSelectionView()
-            .edgesIgnoringSafeArea(.all)
     }
 }
 
 struct Screen2: View {
     var body: some View {
         Promocodes()
-            .edgesIgnoringSafeArea(.all)
     }
 }
 
@@ -56,8 +54,6 @@ struct Screen3: View {
 
 struct Screen4: View {
     var body: some View {
-        Text("Это экран 4")
-            .font(.largeTitle)
-            .padding()
+        Purchase()
     }
 }

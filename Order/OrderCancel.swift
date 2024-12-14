@@ -63,7 +63,6 @@ struct OrderCancel: View {
                         .frame(maxWidth: .infinity, minHeight: 60)
                 }
                 .frame(maxWidth: .infinity)
-                .padding(.horizontal)
             }
             
             if showRefundMessage {
@@ -98,7 +97,6 @@ struct OrderCancel: View {
                 }
             }
             .frame(maxWidth: .infinity)
-            .padding(.horizontal)
             
             Spacer()
         }
